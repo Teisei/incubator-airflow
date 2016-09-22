@@ -131,7 +131,8 @@ class CoreTest(unittest.TestCase):
             owner='Also fake',
             start_date=datetime(2015, 1, 2, 0, 0)))
 
-        dag_run = jobs.SchedulerJob(**self.default_scheduler_args).create_dag_run(dag)
+        default_scheduler = jobs.SchedulerJob(**self.default_scheduler_args)
+        dag_run = default_scheduler.create_dag_run(dag)
         assert dag_run is not None
         assert dag_run.dag_id == dag.dag_id
         assert dag_run.run_id is not None
